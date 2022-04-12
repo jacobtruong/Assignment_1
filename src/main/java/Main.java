@@ -6,23 +6,27 @@ import java.util.Scanner;
 import java.util.Set;
 
 public class Main {
+    // Method to create a new enrolment with user input
     public static boolean enrollStudent(StudentEnrolmentData list) {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("-----------------------------------------------\n[Enrolling a new student into a new course]");
         String tmp_input, semester;
 
+        // Input student ID
         do {
             System.out.print("Please input valid/existing student's ID: ");
             tmp_input = sc.nextLine().toUpperCase();
         } while (!list.getListOfStudents().containsKey(tmp_input));
         Student tmp_student = list.getListOfStudents().get(tmp_input);
 
+        // Input semester
         do {
             System.out.print("Please input valid semester: ");
             semester = sc.nextLine().toUpperCase();
         } while (semester.length() != 5 || !StudentEnrolmentData.checkIfInt(semester.substring(0, 4)) || Integer.parseInt(semester.substring(0, 4)) < 2000 || (semester.charAt(4) != 'A' && semester.charAt(4) != 'B' && semester.charAt(4) != 'C'));
 
+        // Input course
         do {
             System.out.print("Please input valid/existing course: ");
             tmp_input = sc.nextLine().toUpperCase();
@@ -32,6 +36,7 @@ public class Main {
         return list.add(tmp_student, tmp_course, semester);
     }
 
+    // Method to update an enrolment with user input
     public static boolean updateStudent(StudentEnrolmentData list) {
         System.out.println("-----------------------------------------------\n[Updating a student]");
         Scanner sc = new Scanner(System.in);
@@ -39,17 +44,20 @@ public class Main {
         int int_input;
         boolean exist = false;
 
+        // Input student ID
         do {
             System.out.print("Please input valid/existing student's ID: ");
             tmp_input = sc.nextLine().toUpperCase();
         } while (!list.getListOfStudents().containsKey(tmp_input));
         Student tmp_student = list.getListOfStudents().get(tmp_input);
 
+        // Input semester
         do {
             System.out.print("Please input valid semester: ");
             semester = sc.nextLine().toUpperCase();
         } while (semester.length() != 5 || !StudentEnrolmentData.checkIfInt(semester.substring(0, 4)) || Integer.parseInt(semester.substring(0, 4)) < 2000 || (semester.charAt(4) != 'A' && semester.charAt(4) != 'B' && semester.charAt(4) != 'C'));
 
+        // If enrolment with the inputted student and semester is found, print
         for (StudentEnrolment s : list.getListOfEnrolments()) {
             if(s.getStudent().equals(tmp_student) && s.getSemester().equals(semester)) {
                 System.out.println(s);
@@ -57,6 +65,7 @@ public class Main {
             }
         }
 
+        // Ask the user to choose how they want to update the enrolment
         System.out.println("\nDo you want to:");
 
         System.out.println("     1. Add new enrolment (course) for this student");
@@ -71,6 +80,7 @@ public class Main {
             return false;
         }
 
+        // Input course
         do {
             System.out.print("Please input valid/existing course: ");
             tmp_input = sc.nextLine().toUpperCase();
@@ -85,25 +95,25 @@ public class Main {
         }
     }
 
+    // Method to print statistical data and save to .csv
     public static void printAll(StudentEnrolmentData list, int n) throws IOException {
         Scanner sc = new Scanner(System.in);
         Set<String> set = new HashSet<>();
         String choice;
+
         // If n = 1: Print all courses for 1 student in 1 semester
-        // If n = 2: Print all students of 1 course in 1 semester
-        // If n = 3: Prints all courses offered in 1 semester
-
-
         if (n == 1) {
             System.out.println("-----------------------------------------------\n[Printing all courses for 1 student in 1 semester]");
             String tmp_input, semester;
 
+            // Input student ID
             do {
                 System.out.print("Please input valid/existing student's ID: ");
                 tmp_input = sc.nextLine().toUpperCase();
             } while (!list.getListOfStudents().containsKey(tmp_input));
             Student student = list.getListOfStudents().get(tmp_input);
 
+            // Input semester
             do {
                 System.out.print("Please input valid semester: ");
                 semester = sc.nextLine().toUpperCase();
@@ -120,6 +130,7 @@ public class Main {
 
             System.out.println();
 
+            // Ask user if they would like to save data to .csv file
             System.out.print("Do you want to save data to a .csv file?\n");
 
             do {
@@ -141,10 +152,12 @@ public class Main {
 
             System.out.println();
 
+        // If n = 2: Print all students of 1 course in 1 semester
         } else if (n == 2) {
             System.out.println("-----------------------------------------------\n[Printing all students of 1 course in 1 semester]");
             String tmp_input, semester;
 
+            // Input course
             do {
                 System.out.print("Please input valid/existing course: ");
                 tmp_input = sc.nextLine().toUpperCase();
@@ -152,6 +165,7 @@ public class Main {
 
             Course course = list.getListOfCourses().get(tmp_input);
 
+            // Input semester
             do {
                 System.out.print("Please input valid semester: ");
                 semester = sc.nextLine().toUpperCase();
@@ -169,6 +183,7 @@ public class Main {
 
             System.out.println();
 
+            // Ask user if they would like to save data to .csv file
             System.out.print("Do you want to save data to a .csv file?\n");
 
             do {
@@ -190,10 +205,12 @@ public class Main {
 
             System.out.println();
 
+        // If n = 3: Prints all courses offered in 1 semester
         } else if (n == 3) {
             System.out.println("-----------------------------------------------\n[Printing all courses offered in 1 semester]");
             String semester;
 
+            // Input semester
             do {
                 System.out.print("Please input valid semester: ");
                 semester = sc.nextLine().toUpperCase();

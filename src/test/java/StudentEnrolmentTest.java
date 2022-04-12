@@ -6,6 +6,7 @@ import java.io.InputStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Running all tests will create 3 .csv files in \\src\\main\\java
 class TestMethodsInMain {
     InputStream sysInBackup = System.in;
 
