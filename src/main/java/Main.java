@@ -123,7 +123,7 @@ public class Main {
             System.out.print("Do you want to save data to a .csv file?\n");
 
             do {
-                System.out.printf("Your choice (Y/N): ");
+                System.out.print("Your choice (Y/N): ");
                 choice = sc.nextLine().toUpperCase();
             } while (!choice.equals("Y") && !choice.equals("N"));
 
@@ -172,7 +172,7 @@ public class Main {
             System.out.print("Do you want to save data to a .csv file?\n");
 
             do {
-                System.out.printf("Your choice (Y/N): ");
+                System.out.print("Your choice (Y/N): ");
                 choice = sc.nextLine().toUpperCase();
             } while (!choice.equals("Y") && !choice.equals("N"));
 
@@ -191,7 +191,7 @@ public class Main {
             System.out.println();
 
         } else if (n == 3) {
-            System.out.println("-----------------------------------------------\n[Printing all students of 1 course in 1 semester]");
+            System.out.println("-----------------------------------------------\n[Printing all courses offered in 1 semester]");
             String semester;
 
             do {
@@ -217,7 +217,7 @@ public class Main {
             System.out.print("Do you want to save data to a .csv file?\n");
 
             do {
-                System.out.printf("Your choice (Y/N): ");
+                System.out.print("Your choice (Y/N): ");
                 choice = sc.nextLine().toUpperCase();
             } while (!choice.equals("Y") && !choice.equals("N"));
 
